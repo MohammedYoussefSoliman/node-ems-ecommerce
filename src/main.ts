@@ -1,11 +1,18 @@
+import 'module-alias/register'
 import express from 'express'
+import { configEnvs } from '@utils/index'
+
+configEnvs()
 const app = express()
-const port = 8000
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello World!' })
+  res.json({
+    message: 'hello world ',
+  })
 })
 
-app.listen(port, () => {
-  return console.log(`http://localhost:${port}`)
+app.listen(process.env.PORT, () => {
+  console.log(`app running at ${process.env.PORT}`)
 })
+
+export default app

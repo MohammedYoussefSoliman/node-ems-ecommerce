@@ -5,24 +5,34 @@
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node-dev src/main.ts",
+    "test": "npm run build && jasmine",
+    "start": "ts-node-dev -r tsconfig-paths/register src/main.ts",
     "dev:nodemon": "nodemon --config nodemon.json src/main.ts",
     "prepare": "husky install",
     "format": "prettier --write src/**/*.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "_moduleAliases": {
+    "@utils": "dist/utils"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.17",
+    "@types/jasmine": "^4.3.1",
     "@types/node": "^18.15.3",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
     "eslint": "^8.36.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.0",
+    "jasmine": "^4.6.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "module-alias": "^2.2.2",
     "nodemon": "^2.0.21",
+    "supertest": "^6.3.3",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^5.0.2"

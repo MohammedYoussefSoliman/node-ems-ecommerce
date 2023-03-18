@@ -1,11 +1,21 @@
 {
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,
     "target": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist"
+    "paths": {
+      "@utils/*": ["utils/*"]
+    },
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": "./src"
   },
-  "lib": ["es2015"]
+  "lib": ["es2015"],
+  "exclude": ["dist", "node_modules"],
+  "include": [".eslintrc.cjs", "./src/**/*"]
 }
