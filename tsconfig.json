@@ -9,7 +9,9 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "paths": {
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@middleware/*": ["middleware/*"]
     },
     "outDir": "dist",
     "rootDir": "src",

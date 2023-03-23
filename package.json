@@ -14,7 +14,8 @@
     "lint:fix": "eslint . --fix"
   },
   "_moduleAliases": {
-    "@utils": "dist/utils"
+    "@utils": "dist/utils",
+    "@interfaces": "dist/interfaces"
   },
   "keywords": [],
   "author": "",

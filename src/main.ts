@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
 import { configEnvs } from '@utils/index'
+import { errorHandlerMiddleware } from '@middleware/index'
 
 configEnvs()
 const app = express()
@@ -31,6 +32,8 @@ app.post('/', (req, res) => {
     data: req.body,
   })
 })
+
+app.use(errorHandlerMiddleware)
 
 app.listen(process.env.PORT, () => {
   console.log(`app running at ${process.env.PORT}`)
