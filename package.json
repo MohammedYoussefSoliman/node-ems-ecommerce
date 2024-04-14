@@ -1,5 +1,5 @@
 {
-  "name": "node-auth",
+  "name": "node-ecommerce",
   "version": "1.0.0",
   "description": "",
   "main": "dist/main.js",
@@ -7,7 +7,7 @@
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine",
     "start": "ts-node-dev -r tsconfig-paths/register src/main.ts",
-    "dev:nodemon": "nodemon --config nodemon.json src/main.ts",
+    "dev": "nodemon --config nodemon.json src/main.ts",
     "prepare": "husky install",
     "format": "prettier --write src/**/*.ts",
     "lint": "eslint .",
