@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Response, Request, NextFunction } from 'express'
-import { Error } from '@interfaces/index'
+import { Error } from '@interfaces'
 
-const errorHandler = (
+export const errorHandlerMiddleware = (
   error: Error,
   req: Request,
   res: Response,
@@ -17,5 +17,3 @@ const errorHandler = (
     stack: process.env.NODE_ENV === 'development' ? error.stack : {},
   })
 }
-
-export default errorHandler

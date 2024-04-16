@@ -5,13 +5,20 @@
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,
-    "target": "es6",
+    "target": "ESNext",
+    "lib": ["es6"],
     "moduleResolution": "node",
     "sourceMap": true,
     "paths": {
       "@utils/*": ["utils/*"],
+      "@utils": ["utils"],
       "@interfaces/*": ["interfaces/*"],
-      "@middleware/*": ["middleware/*"]
+      "@interfaces": ["interfaces"],
+      "@middleware/*": ["middleware/*"],
+      "@middleware": ["middleware"],
+      "@models": ["models"],
+      "@controllers": ["controllers"],
+      "@configs": ["configs"]
     },
     "outDir": "dist",
     "rootDir": "src",

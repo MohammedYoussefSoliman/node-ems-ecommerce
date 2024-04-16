@@ -1,1 +1,2 @@
-export { default as errorHandlerMiddleware } from './errorHandler.middleware'
+export * from './errorHandler.middleware'
+export * from './asyncHandler'

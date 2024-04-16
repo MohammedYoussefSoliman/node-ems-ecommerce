@@ -1,14 +1,18 @@
-import 'module-alias/register'
 import express from 'express'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
-import { configEnvs } from '@utils/index'
-import { errorHandlerMiddleware } from '@middleware/index'
+import { configEnvs } from '@utils'
+import { errorHandlerMiddleware } from '@middleware'
+import { CategoriesModel } from '@models'
+import { connectDB } from '@configs'
 
 configEnvs()
+connectDB()
+
 const app = express()
 app.use(express.json())
+// deals with security issues
 app.use(helmet())
 app.use(
   rateLimit({
@@ -18,6 +22,7 @@ app.use(
     message: 'Too many requests',
   })
 )
+// http logger middleware
 app.use(morgan('common'))
 
 app.get('/', (req, res) => {
@@ -25,12 +30,16 @@ app.get('/', (req, res) => {
     message: 'hello world',
   })
 })
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
   console.log(req.body)
-  res.json({
-    message: 'hello from post',
-    data: req.body,
-  })
+  try {
+    const { name } = req.body
+    const newCategory = new CategoriesModel({ name })
+    const response = await newCategory.save()
+    res.json(response)
+  } catch (error) {
+    res.json(error)
+  }
 })
 
 app.use(errorHandlerMiddleware)

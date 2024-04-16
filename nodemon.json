@@ -1,7 +1,7 @@
 {
   "ignore": ["**/*.test.ts", "**/*.spec.ts", ".git", "node_modules"],
   "watch": ["src"],
-  "exec": "ts-node-dev --respawn -r tsconfig-paths/register -r ts-node/register",
+  "exec": "ts-node-dev --respawn -r tsconfig-paths/register -r ts-node",
   "execMap": {
     "ts": "node --loader ts-node/esm"
   },
