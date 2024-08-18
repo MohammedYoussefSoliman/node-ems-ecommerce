@@ -4,7 +4,7 @@ import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
 import { configEnvs } from '@utils'
 import { errorHandlerMiddleware } from '@middleware'
-import { CategoriesModel } from '@models'
+import { categoryRouter } from '@routes'
 import { connectDB } from '@configs'
 
 configEnvs()
@@ -30,17 +30,7 @@ app.get('/', (req, res) => {
     message: 'hello world',
   })
 })
-app.post('/', async (req, res) => {
-  console.log(req.body)
-  try {
-    const { name } = req.body
-    const newCategory = new CategoriesModel({ name })
-    const response = await newCategory.save()
-    res.json(response)
-  } catch (error) {
-    res.json(error)
-  }
-})
+app.use('api/v1/categories', categoryRouter)
 
 app.use(errorHandlerMiddleware)
 

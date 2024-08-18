@@ -1,1 +1,1 @@
-export * from './categories/categories.add'
+export * from './categories'

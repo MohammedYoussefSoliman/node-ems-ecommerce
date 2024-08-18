@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Response, Request, NextFunction } from 'express'
+import { Response, Request } from 'express'
 import { Error } from '@interfaces'
 
 export const errorHandlerMiddleware = (
   error: Error,
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
+  // next: NextFunction
 ) => {
   const status = error.status || 500
 
