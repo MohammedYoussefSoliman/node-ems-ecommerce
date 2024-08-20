@@ -1,14 +1,17 @@
 import { Request, Response } from 'express'
+import slugify from 'slugify'
 import { CategoriesModel } from '@models'
+import { asyncHandler } from '@middleware'
 
-export const addCategory = async (req: Request, res: Response) => {
-  console.log(req.body)
-  try {
+export const addCategory = asyncHandler(
+  async (req: Request, res: Response, _next) => {
     const { name } = req.body
-    const newCategory = new CategoriesModel({ name })
-    const response = await newCategory.save()
-    res.json(response)
-  } catch (error) {
-    res.json(error)
+    const response = await CategoriesModel.create({
+      name,
+      slug: slugify(name),
+    })
+    res.status(201).json({
+      data: response,
+    })
   }
-}
+)

@@ -25,12 +25,13 @@ app.use(
 // http logger middleware
 app.use(morgan('common'))
 
-app.get('/', (req, res) => {
-  res.json({
-    message: 'hello world',
-  })
-})
-app.use('api/v1/categories', categoryRouter)
+// app.get('/', (req, res) => {
+//   res.json({
+//     message: 'hello world',
+//   })
+// })
+
+app.use('/api/v1/categories', categoryRouter)
 
 app.use(errorHandlerMiddleware)
 

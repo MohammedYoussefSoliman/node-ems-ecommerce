@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
-import { addCategory } from '@controllers'
+import { addCategory, getCategories } from '@controllers'
 
 export const categoryRouter = Router()
 
-categoryRouter.post('/', addCategory)
+categoryRouter.get('/', getCategories).post('/', addCategory)
