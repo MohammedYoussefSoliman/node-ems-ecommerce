@@ -27,5 +27,5 @@
   },
   "lib": ["es2015"],
   "exclude": ["dist", "node_modules"],
-  "include": [".eslintrc.cjs", "./src/**/*"]
+  "include": [".eslintrc.cjs", "./src/**/*", "./*.d.ts", "types/index.d.ts"]
 }

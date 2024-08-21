@@ -1,11 +1,12 @@
 import { Schema, model } from 'mongoose'
+import { ICategory } from '@interfaces'
 
-const categoriesSchema = new Schema(
+const categoriesSchema = new Schema<ICategory>(
   {
     name: {
       type: String,
-      require: [true, 'Category name is required'],
-      unique: [true, 'Category name must be unique'],
+      required: [true, 'Category name is required'],
+      unique: true,
       minlength: [3, 'Category name is required'],
       maxlength: [64, 'Category name is required'],
     },
@@ -19,4 +20,4 @@ const categoriesSchema = new Schema(
   }
 )
 
-export const CategoriesModel = model('Category', categoriesSchema)
+export const CategoriesModel = model<ICategory>('Category', categoriesSchema)
