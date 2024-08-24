@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose'
 import { ICategory } from '@interfaces'
+import slugify from 'slugify'
 
 const categoriesSchema = new Schema<ICategory>(
   {
@@ -19,5 +20,10 @@ const categoriesSchema = new Schema<ICategory>(
     timestamps: true,
   }
 )
+
+categoriesSchema.pre('save', async function (next) {
+  this.slug = slugify(this.name, { lower: true })
+  next()
+})
 
 export const CategoriesModel = model<ICategory>('Category', categoriesSchema)
