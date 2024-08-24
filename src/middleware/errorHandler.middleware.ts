@@ -1,20 +1,21 @@
 import { Response, Request, NextFunction } from 'express'
-import { Error } from '@interfaces'
+import { ApiError } from '@types'
 
 export const errorHandlerMiddleware = (
-  error: Error,
-  req: Request,
+  error: ApiError,
+  _req: Request,
   res: Response,
   _next: NextFunction
 ) => {
-  const status = error?.status || 500
+  const status = error.statusCode || 500
 
   res
     ?.status(status)
     .json({
-      success: false,
+      statusText: error.status,
       status,
-      message: error.message || 'Something went wrong',
+      message: `${error.message} - ${error.name}`,
+      isOperational: error.isOperational,
       stack: process.env.NODE_ENV === 'development' ? error.stack : {},
     })
     .end()

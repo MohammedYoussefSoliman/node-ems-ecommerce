@@ -7,7 +7,7 @@ import {
   updateCategory,
   deleteCategory,
 } from '@controllers'
-import { ICategory } from '@interfaces'
+import { ICategory } from 'types'
 import { paginationHandler } from '@middleware'
 import { CategoriesModel } from '@models'
 

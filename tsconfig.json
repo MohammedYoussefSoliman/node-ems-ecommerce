@@ -12,8 +12,8 @@
     "paths": {
       "@utils/*": ["utils/*"],
       "@utils": ["utils"],
-      "@interfaces/*": ["interfaces/*"],
-      "@interfaces": ["interfaces"],
+      "@types/*": ["types/*"],
+      "@types": ["types"],
       "@middleware/*": ["middleware/*"],
       "@middleware": ["middleware"],
       "@models": ["models"],

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { Model, Document } from 'mongoose'
-import type { PaginationResultType } from '@interfaces'
+import type { PaginationResultType } from '@types'
 
 export const paginationHandler = <T extends Document>(model: Model<T>) => {
   return async (req: Request, res: Response, next: NextFunction) => {

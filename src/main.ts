@@ -6,6 +6,7 @@ import { configEnvs } from '@utils'
 import { errorHandlerMiddleware } from '@middleware'
 import { categoryRouter } from '@routes'
 import { connectDB } from '@configs'
+import { ApiError } from '@types'
 
 configEnvs()
 connectDB()
@@ -25,13 +26,15 @@ app.use(
 // http logger middleware
 app.use(morgan('common'))
 
-// app.get('/', (req, res) => {
-//   res.json({
-//     message: 'hello world',
-//   })
-// })
-
 app.use('/api/v1/categories', categoryRouter)
+
+app.all('*', (req, _res, next) => {
+  const error = new ApiError(
+    `${req.originalUrl} this destination is not found`,
+    400
+  )
+  next(error)
+})
 
 app.use(errorHandlerMiddleware)
 

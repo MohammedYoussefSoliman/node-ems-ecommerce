@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-import { ICategory } from '@interfaces'
+import { ICategory } from '@types'
 import slugify from 'slugify'
 
 const categoriesSchema = new Schema<ICategory>(
