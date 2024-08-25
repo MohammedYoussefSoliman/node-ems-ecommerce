@@ -38,8 +38,16 @@ app.all('*', (req, _res, next) => {
 
 app.use(errorHandlerMiddleware)
 
-app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log(`app running at ${process.env.PORT}`)
+})
+
+process.on('uncaughtException', error => {
+  console.log(`${error.name}: ${error.message}`)
+  server.close(() => {
+    console.log('shutting down...')
+    process.exit(1)
+  })
 })
 
 export default app
