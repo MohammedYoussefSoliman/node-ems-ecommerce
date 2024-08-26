@@ -14,7 +14,7 @@ export const errorHandlerMiddleware = (
     .json({
       statusText: error.status,
       status,
-      message: `${error.message} - ${error.name}`,
+      message: `${error.name}: ${error.message}`,
       isOperational: error.isOperational,
       stack: process.env.NODE_ENV === 'development' ? error.stack : {},
     })
