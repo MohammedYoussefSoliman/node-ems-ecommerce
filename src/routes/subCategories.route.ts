@@ -20,11 +20,6 @@ export const subCategoryRouter = Router({ mergeParams: true })
 
 subCategoryRouter
   .get('/', paginationHandler<ISubCategory>(SubCategoriesModel), getCategories)
-  .get(
-    '/:categoryId/sub-categories',
-    paginationHandler<ISubCategory>(SubCategoriesModel),
-    getCategories
-  )
   .get('/:id', ...getSubCategoryValidators, getSubCategory)
   .post('/', ...createSubCategoryValidators, addSubCategory)
   .put('/:id', ...getSubCategoryValidators, updateSubCategory)

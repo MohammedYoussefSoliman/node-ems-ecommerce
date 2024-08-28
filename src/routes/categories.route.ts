@@ -4,6 +4,7 @@ import {
   addCategory,
   getCategories,
   getCategory,
+  getSubCategories,
   updateCategory,
   deleteCategory,
 } from '@controllers'
@@ -27,6 +28,7 @@ categoryRouter
     getCategories
   )
   .get('/:id', ...getCategoryValidators, getCategory)
+  .get('/:categoryId/sub-categories', getSubCategories)
   .post('/', ...createCategoryValidators, addCategory)
   .put('/:id', ...getCategoryValidators, updateCategory)
   .delete('/:id', ...deleteCategoryValidators, deleteCategory)

@@ -18,6 +18,19 @@ export const getCategory = asyncHandler(
     res.status(200).json({ data: category })
   }
 )
+
+export const getSubCategories = asyncHandler(
+  async (req: Request, res: Response, _next) => {
+    const { categoryId } = req.params
+    let filter = {}
+    if (categoryId) filter = { category: categoryId }
+
+    const subCategories = await SubCategoriesModel.find(filter)
+
+    res.status(200).json({ data: subCategories })
+  }
+)
+
 export const getSubCategory = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params
