@@ -2,7 +2,10 @@ import { NextFunction, Request, Response } from 'express'
 import { Model, Document } from 'mongoose'
 import type { PaginationResultType } from '@types'
 
-export const paginationHandler = <T extends Document>(model: Model<T>) => {
+export const paginationHandler = <T extends Document>(
+  model: Model<T>,
+  queryFn?: (model: Model<T>, limit: number, skip: number) => Promise<T[]>
+) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const page = parseInt(req.query.page as string) || 1
     const limit = parseInt(req.query.limit as string) || 4
@@ -12,6 +15,7 @@ export const paginationHandler = <T extends Document>(model: Model<T>) => {
     const paginatedResults: PaginationResultType<T> = { data: [], results: 0 }
 
     const documentCount = await model.countDocuments().exec()
+
     paginatedResults.results = documentCount
     if (lastIndex < documentCount) {
       paginatedResults.next = {
@@ -27,7 +31,12 @@ export const paginationHandler = <T extends Document>(model: Model<T>) => {
     }
 
     try {
-      const results = await model.find().limit(limit).skip(firstIndex).exec()
+      let results = []
+      if (queryFn) {
+        results = await queryFn(model, limit, firstIndex)
+      } else {
+        results = await model.find().limit(limit).skip(firstIndex).exec()
+      }
       paginatedResults.data = results
       res.locals.paginatedResults = paginatedResults
       next()

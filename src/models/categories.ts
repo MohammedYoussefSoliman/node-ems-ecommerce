@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 import { ICategory } from '@types'
 import slugify from 'slugify'
 
@@ -15,6 +15,12 @@ const categoriesSchema = new Schema<ICategory>(
       type: String,
       lowercase: true,
     },
+    subCategories: [
+      {
+        type: Types.ObjectId,
+        ref: 'SubCategory',
+      },
+    ],
   },
   {
     timestamps: true,

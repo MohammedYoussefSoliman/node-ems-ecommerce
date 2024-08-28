@@ -1,8 +1,7 @@
 import { check } from 'express-validator'
 import { validator } from '@middleware'
 
-const generalCategoryValidator = (message: string = 'invalid category id') =>
-  check('id').isMongoId().withMessage(message)
+import { generalCategoryValidator } from './commonValidators'
 
 const createCategoryValidator = check('name')
   .notEmpty()

@@ -19,7 +19,13 @@ import {
 export const categoryRouter = Router()
 
 categoryRouter
-  .get('/', paginationHandler<ICategory>(CategoriesModel), getCategories)
+  .get(
+    '/',
+    paginationHandler<ICategory>(CategoriesModel, (model, limit, skip) =>
+      model.find().populate('subCategories').limit(limit).skip(skip).exec()
+    ),
+    getCategories
+  )
   .get('/:id', ...getCategoryValidators, getCategory)
   .post('/', ...createCategoryValidators, addCategory)
   .put('/:id', ...getCategoryValidators, updateCategory)
