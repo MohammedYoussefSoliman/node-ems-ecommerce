@@ -13,6 +13,7 @@ export const addCategory = asyncHandler(
     })
   }
 )
+
 export const addSubCategory = asyncHandler(
   async (req: Request, res: Response, _next) => {
     const { name, category } = req.body

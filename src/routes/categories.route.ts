@@ -2,6 +2,7 @@ import { Router } from 'express'
 
 import {
   addCategory,
+  addSubCategory,
   getCategories,
   getCategory,
   getSubCategories,
@@ -9,7 +10,7 @@ import {
   deleteCategory,
 } from '@controllers'
 import { ICategory } from 'types'
-import { paginationHandler } from '@middleware'
+import { paginationHandler, adjustAddSubCategoryMiddleware } from '@middleware'
 import { CategoriesModel } from '@models'
 import {
   getCategoryValidators,
@@ -29,6 +30,11 @@ categoryRouter
   )
   .get('/:id', ...getCategoryValidators, getCategory)
   .get('/:categoryId/sub-categories', getSubCategories)
+  .post(
+    '/:categoryId/sub-categories',
+    adjustAddSubCategoryMiddleware,
+    addSubCategory
+  )
   .post('/', ...createCategoryValidators, addCategory)
   .put('/:id', ...getCategoryValidators, updateCategory)
   .delete('/:id', ...deleteCategoryValidators, deleteCategory)
