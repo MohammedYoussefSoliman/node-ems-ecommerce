@@ -1,5 +1,4 @@
 import { check } from 'express-validator'
 
-export const generalCategoryValidator = (
-  message: string = 'invalid category id'
-) => check('id').isMongoId().withMessage(message)
+export const generalValidator = (message: string = 'invalid category id') =>
+  check('id').isMongoId().withMessage(message)

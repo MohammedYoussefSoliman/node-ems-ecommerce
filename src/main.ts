@@ -4,7 +4,12 @@ import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
 import { configEnvs } from '@utils'
 import { errorHandlerMiddleware } from '@middleware'
-import { categoryRouter, subCategoryRouter, brandsRouter } from '@routes'
+import {
+  categoryRouter,
+  subCategoryRouter,
+  brandsRouter,
+  productsRouter,
+} from '@routes'
 import { connectDB } from '@configs'
 import { ApiError } from '@types'
 
@@ -28,6 +33,7 @@ app.use(morgan('common'))
 
 app.use('/api/v1/categories', categoryRouter)
 app.use('/api/v1/brands', brandsRouter)
+app.use('/api/v1/products', productsRouter)
 app.use('/api/v1/sub-categories', subCategoryRouter)
 
 app.all('*', (req, _res, next) => {

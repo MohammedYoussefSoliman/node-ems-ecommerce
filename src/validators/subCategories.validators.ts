@@ -1,7 +1,7 @@
 import { check } from 'express-validator'
 import { validator } from '@middleware'
 
-import { generalCategoryValidator } from './commonValidators'
+import { generalValidator } from './commonValidators'
 
 const createCategoryNameValidator = check('name')
   .notEmpty()
@@ -17,11 +17,8 @@ const createSubCategoryCategoryValidator = check('category')
   .isMongoId()
   .withMessage('invalid subCategory Id')
 
-export const getSubCategoryValidators = [generalCategoryValidator(), validator]
-export const deleteSubCategoryValidators = [
-  generalCategoryValidator(),
-  validator,
-]
+export const getSubCategoryValidators = [generalValidator(), validator]
+export const deleteSubCategoryValidators = [generalValidator(), validator]
 
 export const createSubCategoryValidators = [
   createCategoryNameValidator,

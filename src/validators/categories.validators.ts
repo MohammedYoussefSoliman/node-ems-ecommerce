@@ -1,7 +1,7 @@
 import { check } from 'express-validator'
 import { validator } from '@middleware'
 
-import { generalCategoryValidator } from './commonValidators'
+import { generalValidator } from './commonValidators'
 
 const createCategoryValidator = check('name')
   .notEmpty()
@@ -11,7 +11,7 @@ const createCategoryValidator = check('name')
   .isLength({ max: 32 })
   .withMessage('Category name length is too long')
 
-export const getCategoryValidators = [generalCategoryValidator(), validator]
-export const deleteCategoryValidators = [generalCategoryValidator(), validator]
+export const getCategoryValidators = [generalValidator(), validator]
+export const deleteCategoryValidators = [generalValidator(), validator]
 
 export const createCategoryValidators = [createCategoryValidator, validator]

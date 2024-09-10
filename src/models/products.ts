@@ -14,7 +14,6 @@ const productsSchema = new Schema<IProduct>(
     },
     slug: {
       type: String,
-      required: true,
       lowercase: true,
     },
     description: {
