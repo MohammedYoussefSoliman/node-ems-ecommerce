@@ -4,6 +4,10 @@ import { CategoriesModel, SubCategoriesModel, BrandsModel } from '@models'
 
 import { generalValidator } from './commonValidators'
 
+const getInvalidIdes = (ides: string[], existedIdes: string[]) => {
+  return ides.filter(id => !existedIdes.includes(id))
+}
+
 const createProductValidator = [
   check('title')
     .notEmpty()
@@ -52,15 +56,37 @@ const createProductValidator = [
       }
       return true
     }),
-  check('subCategory')
+  check('subCategories')
     .optional()
     .isMongoId()
     .withMessage('invalid subCategory Id')
-    .custom(async value => {
-      const subCategory = await SubCategoriesModel.findById(value)
-      if (!subCategory) {
-        return Promise.reject('invalid subCategory Id')
+    .custom(async ides => {
+      const foundSubCategories = await SubCategoriesModel.find({
+        _id: { $exists: true, $in: ides },
+      })
+      if (foundSubCategories.length !== ides.length) {
+        const invalidIdes = getInvalidIdes(
+          ides,
+          foundSubCategories.map(c => c._id.toString())
+        )
+        return Promise.reject(`invalid subCategory Ids: ${invalidIdes}`)
       }
+      return true
+    })
+    .custom(async (ides, { req }) => {
+      const selectedCategory = await CategoriesModel.findById(req.body.category)
+      const categoriesSubs = selectedCategory.subCategories.map(id =>
+        id.toString()
+      )
+      const notExistedIdes = ides.filter(id => !categoriesSubs.includes(id))
+
+      console.log(notExistedIdes)
+      if (notExistedIdes.length > 0) {
+        return Promise.reject(
+          `SubCategories Ids: ${notExistedIdes} not found in the selected category`
+        )
+      }
+
       return true
     }),
   check('brand')

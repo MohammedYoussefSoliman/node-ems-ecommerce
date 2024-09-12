@@ -25,6 +25,6 @@ export interface IProduct extends Document {
   images: string[]
   colors: string[]
   brand: ObjectId
-  subCategory?: ObjectId
+  subCategories?: ObjectId[]
   category: ObjectId
 }
