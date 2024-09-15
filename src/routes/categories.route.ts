@@ -23,8 +23,17 @@ export const categoryRouter = Router()
 categoryRouter
   .get(
     '/',
-    paginationHandler<ICategory>(CategoriesModel, (model, limit, skip) =>
-      model.find().populate('subCategories').limit(limit).skip(skip).exec()
+    paginationHandler<ICategory>(
+      CategoriesModel,
+      (model, limit, skip, filteredOptions) =>
+        model
+          .find(filteredOptions.filter)
+          .sort(filteredOptions.sort)
+          .select(filteredOptions.select)
+          .populate('subCategories')
+          .limit(limit)
+          .skip(skip)
+          .exec()
     ),
     getCategories
   )

@@ -21,15 +21,19 @@ export const productsRouter = Router()
 productsRouter
   .get(
     '/',
-    paginationHandler<IProduct>(ProductsModel, (model, limit, skip) =>
-      model
-        .find()
-        .populate('category', 'name')
-        .populate('brand', 'name')
-        .populate('subCategory', 'name')
-        .limit(limit)
-        .skip(skip)
-        .exec()
+    paginationHandler<IProduct>(
+      ProductsModel,
+      (model, limit, skip, filteredOptions) =>
+        model
+          .find(filteredOptions.filter)
+          .sort(filteredOptions.sort)
+          .select(filteredOptions.select)
+          .populate('category', 'name')
+          .populate('brand', 'name')
+          .populate('subCategories', 'name')
+          .limit(limit)
+          .skip(skip)
+          .exec()
     ),
     getProducts
   )

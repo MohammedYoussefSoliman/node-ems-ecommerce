@@ -12,9 +12,22 @@
     "coverImage": "headphones-cover.jpg",
     "images": ["headphones-1.jpg", "headphones-2.jpg", "headphones-3.jpg"],
     "colors": ["black", "white", "blue"],
-    "brand": "64f63bf50c1e231234567890",
-    "subCategories": ["64f63bf50c1e231234567891", "64f63bf50c1e231234567892"],
-    "category": "64f63bf50c1e231234567893"
+    "brand": "66e4a4acc4c736dad4db4723",
+    "subCategories": ["66e4ac94c4c736dad4db4773"],
+    "category": "66ce5663e5c6f2192739f4f7"
+  },
+  {
+    "title": "iphone 16 pro max 128Gb",
+    "description": "The new apple iphone the just released",
+    "price": 1299.99,
+    "quantity": 100,
+    "sold": 0,
+    "images": [],
+    "coverImage": "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-hero-geo-240909_inline.jpg.large_2x.jpg",
+    "colors": ["desert-gold", "space-black", "ocean-blue"],
+    "ratingQuantity": 0,
+    "category": "66ce5663e5c6f2192739f4f7",
+    "brand": "66e0b0dbcdaa33ba269267b4"
   },
   {
     "title": "4K Ultra HD Smart TV",
@@ -28,13 +41,13 @@
     "coverImage": "smart-tv-cover.jpg",
     "images": ["smart-tv-1.jpg", "smart-tv-2.jpg", "smart-tv-3.jpg"],
     "colors": ["black", "silver"],
-    "brand": "64f63bf50c1e231234567894",
+    "brand": "66e4a4acc4c736dad4db4723",
     "subCategories": ["64f63bf50c1e231234567895"],
-    "category": "64f63bf50c1e231234567896"
+    "category": "66ce56b1e5c6f2192739f503"
   },
   {
-    "title": "Smartphone - 128GB",
-    "slug": "smartphone-128gb",
+    "title": "Samsung Galaxy S22 - 128GB",
+    "slug": "samsung-galaxy-s22-128gb",
     "description": "Latest model smartphone with 128GB storage, 5G support, and 48MP camera.",
     "price": 799.99,
     "priceAfterDiscount": 749.99,
@@ -45,12 +58,11 @@
     "coverImage": "smartphone-cover.jpg",
     "images": ["smartphone-1.jpg", "smartphone-2.jpg", "smartphone-3.jpg"],
     "colors": ["black", "white", "green"],
-    "brand": "64f63bf50c1e231234567897",
-    "category": "64f63bf50c1e231234567898"
+    "brand": "66e4a4acc4c736dad4db4723",
+    "category": "66ce5663e5c6f2192739f4f7"
   },
   {
-    "title": "Gaming Laptop",
-    "slug": "gaming-laptop",
+    "title": "Dell inspiron G15",
     "description": "15.6-inch gaming laptop with Intel i7 processor, 16GB RAM, and RTX 3070 graphics card.",
     "price": 1499.99,
     "quantity": 80,
@@ -60,8 +72,9 @@
     "coverImage": "gaming-laptop-cover.jpg",
     "images": ["gaming-laptop-1.jpg", "gaming-laptop-2.jpg"],
     "colors": ["black", "red"],
-    "brand": "64f63bf50c1e231234567899",
-    "category": "64f63bf50c1e231234567900"
+    "brand": "66cfb31f3261755242bbbabb",
+    "category": "66e4d7bdc4c736dad4db4779",
+    "subCategories": ["66e4d781c4c736dad4db4776"]
   },
   {
     "title": "Running Shoes",
@@ -76,16 +89,13 @@
     "coverImage": "running-shoes-cover.jpg",
     "images": ["running-shoes-1.jpg", "running-shoes-2.jpg"],
     "colors": ["blue", "green", "red", "black"],
-    "brand": "ObjectId('64f63bf50c1e231234567901')",
-    "subCategories": [
-      "ObjectId('64f63bf50c1e231234567902')",
-      "ObjectId('64f63bf50c1e231234567903')"
-    ],
-    "category": "ObjectId('64f63bf50c1e231234567904')"
+    "brand": "66e4a4c6c4c736dad4db4727",
+    "subCategories": ["66e4aaf3c4c736dad4db476d"],
+    "category": "66ce5685e5c6f2192739f4fb"
   },
   {
-    "title": "Organic Cotton T-Shirt",
-    "slug": "organic-cotton-t-shirt",
+    "title": "nike Organic Cotton T-Shirt",
+    "slug": "nike-organic-cotton-t-shirt",
     "description": "Soft and breathable organic cotton t-shirt, available in multiple colors.",
     "price": 19.99,
     "priceAfterDiscount": 14.99,
@@ -96,9 +106,9 @@
     "coverImage": "cotton-tshirt-cover.jpg",
     "images": ["cotton-tshirt-1.jpg", "cotton-tshirt-2.jpg"],
     "colors": ["white", "black", "gray", "blue"],
-    "brand": "ObjectId('64f63bf50c1e231234567918')",
-    "subCategories": ["ObjectId('64f63bf50c1e231234567919')"],
-    "category": "ObjectId('64f63bf50c1e231234567920')"
+    "brand": "66e4a4c6c4c736dad4db4727",
+    "subCategories": ["66e4a8c4c4c736dad4db4741", "66e4a8bbc4c736dad4db473e"],
+    "category": "66ce5692e5c6f2192739f4fd"
   },
   {
     "title": "Leather Wallet",
@@ -113,13 +123,13 @@
     "coverImage": "leather-wallet-cover.jpg",
     "images": ["leather-wallet-1.jpg", "leather-wallet-2.jpg"],
     "colors": ["brown", "black"],
-    "brand": "ObjectId('64f63bf50c1e231234567921')",
-    "subCategories": ["ObjectId('64f63bf50c1e231234567922')"],
-    "category": "ObjectId('64f63bf50c1e231234567923')"
+    "brand": "66e4a4c6c4c736dad4db4727",
+    "subCategories": ["66e4a8bbc4c736dad4db473e"],
+    "category": "66ce5692e5c6f2192739f4fd"
   },
   {
-    "title": "Ceramic Dinnerware Set",
-    "slug": "ceramic-dinnerware-set",
+    "title": "Ikea Ceramic Dinnerware Set",
+    "slug": "ikea-ceramic-dinnerware-set",
     "description": "16-piece ceramic dinnerware set, including plates, bowls, and mugs in a modern design.",
     "price": 99.99,
     "priceAfterDiscount": 89.99,
@@ -130,8 +140,8 @@
     "coverImage": "dinnerware-set-cover.jpg",
     "images": ["dinnerware-set-1.jpg", "dinnerware-set-2.jpg"],
     "colors": ["white", "gray"],
-    "brand": "ObjectId('64f63bf50c1e231234567924')",
-    "category": "ObjectId('64f63bf50c1e231234567925')"
+    "brand": "66e4da3ac4c736dad4db477c",
+    "category": "66ce56b1e5c6f2192739f503"
   },
   {
     "title": "Scented Soy Candle",
@@ -146,8 +156,8 @@
     "coverImage": "soy-candle-cover.jpg",
     "images": ["soy-candle-1.jpg", "soy-candle-2.jpg"],
     "colors": ["purple", "white"],
-    "brand": "ObjectId('64f63bf50c1e231234567926')",
-    "category": "ObjectId('64f63bf50c1e231234567927')"
+    "brand": "66e4da3ac4c736dad4db477c",
+    "category": "66ce56b1e5c6f2192739f503"
   },
   {
     "title": "Stainless Steel Water Bottle",
@@ -161,8 +171,7 @@
     "coverImage": "water-bottle-cover.jpg",
     "images": ["water-bottle-1.jpg", "water-bottle-2.jpg"],
     "colors": ["blue", "green", "black", "red"],
-    "brand": "ObjectId('64f63bf50c1e231234567928')",
-    "subCategories": ["ObjectId('64f63bf50c1e231234567929')"],
-    "category": "ObjectId('64f63bf50c1e231234567930')"
+    "brand": "66e4da3ac4c736dad4db477c",
+    "category": "66ce56b1e5c6f2192739f503"
   }
 ]
