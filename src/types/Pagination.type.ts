@@ -4,6 +4,7 @@ type PaginationHandler = {
   limit: number
 }
 export type PaginationResultType<T extends Document> = {
+  total: number
   results: number
   previous?: PaginationHandler
   next?: PaginationHandler

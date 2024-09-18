@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextFunction, Request, Response } from 'express'
 import { Model, Document } from 'mongoose'
 import type { PaginationResultType } from '@types'
 import { sortingFilteringHandler } from '@utils'
 
-export const paginationHandler = <T extends Document>(
+export const queryHandler = <T extends Document>(
   model: Model<T>,
   queryFn?: (
     model: Model<T>,
@@ -20,11 +21,15 @@ export const paginationHandler = <T extends Document>(
 
     const filteredOptions = sortingFilteringHandler(req.query)
 
-    const paginatedResults: PaginationResultType<T> = { data: [], results: 0 }
+    const paginatedResults: PaginationResultType<T> = {
+      data: [],
+      results: 0,
+      total: 0,
+    }
 
     const documentCount = await model.countDocuments().exec()
 
-    paginatedResults.results = documentCount
+    paginatedResults.total = documentCount
     if (lastIndex < documentCount) {
       paginatedResults.next = {
         page: page + 1,
@@ -44,7 +49,7 @@ export const paginationHandler = <T extends Document>(
         results = await queryFn(model, limit, firstIndex, filteredOptions)
       } else {
         results = await model
-          .find(filteredOptions.filter)
+          .find({ ...filteredOptions.filter, ...filteredOptions.search })
           .sort(filteredOptions.sort)
           .select(filteredOptions.select)
           .find()
@@ -53,6 +58,7 @@ export const paginationHandler = <T extends Document>(
           .exec()
       }
       paginatedResults.data = results
+      paginatedResults.results = results.length
       res.locals.paginatedResults = paginatedResults
       next()
     } catch (error) {

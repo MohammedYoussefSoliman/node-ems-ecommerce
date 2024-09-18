@@ -10,7 +10,7 @@ import {
   deleteCategory,
 } from '@controllers'
 import { ICategory } from 'types'
-import { paginationHandler, adjustAddSubCategoryMiddleware } from '@middleware'
+import { queryHandler, adjustAddSubCategoryMiddleware } from '@middleware'
 import { CategoriesModel } from '@models'
 import {
   getCategoryValidators,
@@ -23,11 +23,11 @@ export const categoryRouter = Router()
 categoryRouter
   .get(
     '/',
-    paginationHandler<ICategory>(
+    queryHandler<ICategory>(
       CategoriesModel,
       (model, limit, skip, filteredOptions) =>
         model
-          .find(filteredOptions.filter)
+          .find({ ...filteredOptions.filter, ...filteredOptions.search })
           .sort(filteredOptions.sort)
           .select(filteredOptions.select)
           .populate('subCategories')

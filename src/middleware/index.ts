@@ -1,6 +1,6 @@
 export * from './errorHandler.middleware'
 export * from './asyncHandler'
-export * from './paginationHandler'
+export * from './query.middleware'
 export * from './validation.middleware'
 export * from './categories'
 export * from './sortingFilteringHandler'

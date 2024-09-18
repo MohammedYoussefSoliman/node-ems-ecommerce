@@ -45,6 +45,7 @@ export const sortingFilteringHandler = (query: { [key: string]: unknown }) => {
   const options = {
     filter: {},
     sort: {},
+    search: {},
     select: '',
   }
   // prepare mongo operators
@@ -65,7 +66,7 @@ export const sortingFilteringHandler = (query: { [key: string]: unknown }) => {
     match => `$${match}`
   )
   // determine none params keys
-  const noneParams = ['select', 'sort', 'page', 'limit']
+  const noneParams = ['select', 'sort', 'page', 'limit', 'search']
   const queryFilterObject = JSON.parse(queryString)
   noneParams.forEach(param => delete queryFilterObject[param])
 
@@ -100,7 +101,17 @@ export const sortingFilteringHandler = (query: { [key: string]: unknown }) => {
     else options.select = query.select as string
   }
 
-  console.log(options)
+  if (query.search) {
+    const searchQuery = {
+      $or: [
+        { title: { $regex: query.search, $options: 'i' } },
+        { description: { $regex: query.search, $options: 'i' } },
+      ],
+    }
+    options.search = searchQuery
+  }
 
+  console.log(query)
+  console.log(options)
   return options
 }

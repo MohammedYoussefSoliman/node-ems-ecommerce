@@ -8,7 +8,7 @@ import {
   updateProduct,
 } from '@controllers'
 import { IProduct } from 'types'
-import { paginationHandler } from '@middleware'
+import { queryHandler } from '@middleware'
 import { ProductsModel } from '@models'
 import {
   getProductValidators,
@@ -21,11 +21,11 @@ export const productsRouter = Router()
 productsRouter
   .get(
     '/',
-    paginationHandler<IProduct>(
+    queryHandler<IProduct>(
       ProductsModel,
       (model, limit, skip, filteredOptions) =>
         model
-          .find(filteredOptions.filter)
+          .find({ ...filteredOptions.filter, ...filteredOptions.search })
           .sort(filteredOptions.sort)
           .select(filteredOptions.select)
           .populate('category', 'name')

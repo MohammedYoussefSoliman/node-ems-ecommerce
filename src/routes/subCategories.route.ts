@@ -8,7 +8,7 @@ import {
   deleteSubCategory,
 } from '@controllers'
 import { ISubCategory } from 'types'
-import { paginationHandler } from '@middleware'
+import { queryHandler } from '@middleware'
 import { SubCategoriesModel } from '@models'
 import {
   getSubCategoryValidators,
@@ -19,7 +19,7 @@ import {
 export const subCategoryRouter = Router({ mergeParams: true })
 
 subCategoryRouter
-  .get('/', paginationHandler<ISubCategory>(SubCategoriesModel), getCategories)
+  .get('/', queryHandler<ISubCategory>(SubCategoriesModel), getCategories)
   .get('/:id', ...getSubCategoryValidators, getSubCategory)
   .post('/', ...createSubCategoryValidators, addSubCategory)
   .put('/:id', ...getSubCategoryValidators, updateSubCategory)
