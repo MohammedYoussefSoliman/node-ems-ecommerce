@@ -1,4 +1,4 @@
-import { Schema, model, Types } from 'mongoose'
+import { Schema, model, Types, Query } from 'mongoose'
 import { IProduct } from '@types'
 import slugify from 'slugify'
 
@@ -84,6 +84,23 @@ const productsSchema = new Schema<IProduct>(
 
 productsSchema.pre('save', async function (next) {
   this.slug = slugify(this.title, { lower: true })
+  next()
+})
+productsSchema.pre<Query<IProduct, IProduct>>(/^find/, async function (next) {
+  this.populate([
+    {
+      path: 'category',
+      select: 'name -_id',
+    },
+    {
+      path: 'brand',
+      select: 'name -_id',
+    },
+    {
+      path: 'subCategories',
+      select: 'name -_id',
+    },
+  ])
   next()
 })
 

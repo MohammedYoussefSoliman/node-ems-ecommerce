@@ -1,6 +1,7 @@
 import { check } from 'express-validator'
 import { validator } from '@middleware'
 import { CategoriesModel, SubCategoriesModel, BrandsModel } from '@models'
+import { slugHandler } from '@utils'
 
 import { generalValidator } from './commonValidators'
 
@@ -9,8 +10,7 @@ const getInvalidIdes = (ides: string[], existedIdes: string[]) => {
 }
 
 const createProductValidator = [
-  check('title')
-    .notEmpty()
+  slugHandler('title')
     .withMessage('Product title is required')
     .isLength({ min: 3 })
     .withMessage('Product title length is too short')
@@ -80,7 +80,6 @@ const createProductValidator = [
       )
       const notExistedIdes = ides.filter(id => !categoriesSubs.includes(id))
 
-      console.log(notExistedIdes)
       if (notExistedIdes.length > 0) {
         return Promise.reject(
           `SubCategories Ids: ${notExistedIdes} not found in the selected category`
@@ -133,6 +132,12 @@ const createProductValidator = [
     .optional()
     .isInt({ min: 0 })
     .withMessage('Product rating quantity can not be less than 0'),
+]
+
+export const updateProductValidator = [
+  generalValidator(),
+  validator,
+  slugHandler('title'),
 ]
 export const getProductValidators = [generalValidator(), validator]
 export const deleteProductValidators = [generalValidator(), validator]

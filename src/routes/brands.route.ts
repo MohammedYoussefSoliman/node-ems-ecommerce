@@ -14,6 +14,7 @@ import {
   getCategoryValidators,
   deleteCategoryValidators,
   createCategoryValidators,
+  updateCategoryValidator,
 } from '@validators'
 
 export const brandsRouter = Router()
@@ -22,5 +23,5 @@ brandsRouter
   .get('/', queryHandler<IGeneral>(BrandsModel), getBrands)
   .get('/:id', ...getCategoryValidators, getBrand)
   .post('/', ...createCategoryValidators, addBrand)
-  .put('/:id', ...getCategoryValidators, updateBrand)
+  .put('/:id', ...updateCategoryValidator, updateBrand)
   .delete('/:id', ...deleteCategoryValidators, deleteBrand)

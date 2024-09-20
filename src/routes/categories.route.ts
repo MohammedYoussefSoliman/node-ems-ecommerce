@@ -16,6 +16,7 @@ import {
   getCategoryValidators,
   deleteCategoryValidators,
   createCategoryValidators,
+  updateCategoryValidator,
 } from '@validators'
 
 export const categoryRouter = Router()
@@ -30,7 +31,6 @@ categoryRouter
           .find({ ...filteredOptions.filter, ...filteredOptions.search })
           .sort(filteredOptions.sort)
           .select(filteredOptions.select)
-          .populate('subCategories')
           .limit(limit)
           .skip(skip)
           .exec()
@@ -45,5 +45,5 @@ categoryRouter
     addSubCategory
   )
   .post('/', ...createCategoryValidators, addCategory)
-  .put('/:id', ...getCategoryValidators, updateCategory)
+  .put('/:id', ...updateCategoryValidator, updateCategory)
   .delete('/:id', ...deleteCategoryValidators, deleteCategory)

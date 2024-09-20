@@ -1,32 +1,16 @@
-import { Request, Response } from 'express'
+import { ICategory, ISubCategory } from '@types'
+import { createFactory } from '@utils'
 import { CategoriesModel, SubCategoriesModel } from '@models'
-import { asyncHandler } from '@middleware'
 
-export const addCategory = asyncHandler(
-  async (req: Request, res: Response, _next) => {
-    const { name } = req.body
-    const response = await CategoriesModel.create({
-      name,
-    })
-    res.status(201).json({
-      data: response,
-    })
-  }
-)
+export const addCategory = createFactory<ICategory>(CategoriesModel)
 
-export const addSubCategory = asyncHandler(
-  async (req: Request, res: Response, _next) => {
-    const { name, category } = req.body
-    const response = await SubCategoriesModel.create({
-      name,
-      category,
-    })
+export const addSubCategory = createFactory<ISubCategory>(
+  SubCategoriesModel,
+  async (document, req) => {
+    const { category } = req.body
+
     await CategoriesModel.findByIdAndUpdate(category, {
-      $push: { subCategories: response._id },
-    })
-
-    res.status(201).json({
-      data: response,
+      $push: { subCategories: document._id },
     })
   }
 )

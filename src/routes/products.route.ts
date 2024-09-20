@@ -14,6 +14,7 @@ import {
   getProductValidators,
   deleteProductValidators,
   createProductValidators,
+  updateProductValidator,
 } from '@validators'
 
 export const productsRouter = Router()
@@ -28,9 +29,6 @@ productsRouter
           .find({ ...filteredOptions.filter, ...filteredOptions.search })
           .sort(filteredOptions.sort)
           .select(filteredOptions.select)
-          .populate('category', 'name')
-          .populate('brand', 'name')
-          .populate('subCategories', 'name')
           .limit(limit)
           .skip(skip)
           .exec()
@@ -39,5 +37,5 @@ productsRouter
   )
   .get('/:id', ...getProductValidators, getProduct)
   .post('/', ...createProductValidators, addProduct)
-  .put('/:id', ...getProductValidators, updateProduct)
+  .put('/:id', ...updateProductValidator, updateProduct)
   .delete('/:id', ...deleteProductValidators, deleteProduct)

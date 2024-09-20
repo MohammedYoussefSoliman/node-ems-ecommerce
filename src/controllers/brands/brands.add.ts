@@ -1,15 +1,5 @@
-import { Request, Response } from 'express'
+import { IGeneral } from '@types'
+import { createFactory } from '@utils'
 import { BrandsModel } from '@models'
-import { asyncHandler } from '@middleware'
 
-export const addBrand = asyncHandler(
-  async (req: Request, res: Response, _next) => {
-    const { name } = req.body
-    const response = await BrandsModel.create({
-      name,
-    })
-    res.status(201).json({
-      data: response,
-    })
-  }
-)
+export const addBrand = createFactory<IGeneral>(BrandsModel)

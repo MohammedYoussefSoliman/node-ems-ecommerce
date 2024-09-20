@@ -1,12 +1,5 @@
-import { Request, Response } from 'express'
 import { ProductsModel } from '@models'
-import { asyncHandler } from '@middleware'
+import { IProduct } from '@types'
+import { createFactory } from '@utils'
 
-export const addProduct = asyncHandler(
-  async (req: Request, res: Response, _next) => {
-    const response = await ProductsModel.create(req.body)
-    res.status(201).json({
-      data: response,
-    })
-  }
-)
+export const addProduct = createFactory<IProduct>(ProductsModel)
