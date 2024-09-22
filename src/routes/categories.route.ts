@@ -8,6 +8,7 @@ import {
   getSubCategories,
   updateCategory,
   deleteCategory,
+  uploadCategoryImage,
 } from '@controllers'
 import { ICategory } from 'types'
 import { queryHandler, adjustAddSubCategoryMiddleware } from '@middleware'
@@ -44,6 +45,6 @@ categoryRouter
     adjustAddSubCategoryMiddleware,
     addSubCategory
   )
-  .post('/', ...createCategoryValidators, addCategory)
+  .post('/', uploadCategoryImage, ...createCategoryValidators, addCategory)
   .put('/:id', ...updateCategoryValidator, updateCategory)
   .delete('/:id', ...deleteCategoryValidators, deleteCategory)
