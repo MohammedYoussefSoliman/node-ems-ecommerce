@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
 import helmet from 'helmet'
+import path from 'path'
 import rateLimit from 'express-rate-limit'
 import { configEnvs } from '@utils'
 import { errorHandlerMiddleware } from '@middleware'
@@ -30,6 +31,8 @@ app.use(
 )
 // http logger middleware
 app.use(morgan('common'))
+
+app.use(express.static(path.join(__dirname, '../uploads')))
 
 app.use('/api/v1/categories', categoryRouter)
 app.use('/api/v1/brands', brandsRouter)

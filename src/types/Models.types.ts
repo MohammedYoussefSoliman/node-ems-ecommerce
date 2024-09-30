@@ -6,6 +6,7 @@ export interface IGeneral extends Document {
 }
 export interface ICategory extends IGeneral {
   subCategories: Types.ObjectId[]
+  image: string
 }
 
 export interface ISubCategory extends IGeneral {

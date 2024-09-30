@@ -15,6 +15,9 @@ const categoriesSchema = new Schema<ICategory>(
       type: String,
       lowercase: true,
     },
+    image: {
+      type: String,
+    },
     subCategories: [
       {
         type: Types.ObjectId,

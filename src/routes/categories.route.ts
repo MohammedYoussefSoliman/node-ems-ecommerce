@@ -6,6 +6,7 @@ import {
   getCategories,
   getCategory,
   getSubCategories,
+  resizeImage,
   updateCategory,
   deleteCategory,
   uploadCategoryImage,
@@ -45,6 +46,18 @@ categoryRouter
     adjustAddSubCategoryMiddleware,
     addSubCategory
   )
-  .post('/', uploadCategoryImage, ...createCategoryValidators, addCategory)
-  .put('/:id', ...updateCategoryValidator, updateCategory)
+  .post(
+    '/',
+    uploadCategoryImage,
+    resizeImage,
+    ...createCategoryValidators,
+    addCategory
+  )
+  .put(
+    '/:id',
+    ...updateCategoryValidator,
+    uploadCategoryImage,
+    resizeImage,
+    updateCategory
+  )
   .delete('/:id', ...deleteCategoryValidators, deleteCategory)
