@@ -8,7 +8,7 @@ import {
   updateProduct,
 } from '@controllers'
 import { IProduct } from 'types'
-import { queryHandler } from '@middleware'
+import { queryHandler, uploadMixFields, processMixImage } from '@middleware'
 import { ProductsModel } from '@models'
 import {
   getProductValidators,
@@ -18,6 +18,11 @@ import {
 } from '@validators'
 
 export const productsRouter = Router()
+
+const fileFields = [
+  { name: 'images', maxCount: 10 },
+  { name: 'coverImage', maxCount: 1 },
+]
 
 productsRouter
   .get(
@@ -36,6 +41,18 @@ productsRouter
     getProducts
   )
   .get('/:id', ...getProductValidators, getProduct)
-  .post('/', ...createProductValidators, addProduct)
-  .put('/:id', ...updateProductValidator, updateProduct)
+  .post(
+    '/',
+    uploadMixFields(fileFields),
+    processMixImage(fileFields, 'products'),
+    ...createProductValidators,
+    addProduct
+  )
+  .put(
+    '/:id',
+    uploadMixFields(fileFields),
+    processMixImage(fileFields, 'products'),
+    ...updateProductValidator,
+    updateProduct
+  )
   .delete('/:id', ...deleteProductValidators, deleteProduct)

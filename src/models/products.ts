@@ -1,5 +1,6 @@
 import { Schema, model, Types, Query } from 'mongoose'
 import { IProduct } from '@types'
+
 import slugify from 'slugify'
 
 const productsSchema = new Schema<IProduct>(
@@ -102,6 +103,23 @@ productsSchema.pre<Query<IProduct, IProduct>>(/^find/, async function (next) {
     },
   ])
   next()
+})
+
+productsSchema.post('init', function (doc) {
+  if (doc.images)
+    doc.images = doc.images.map(
+      image => `${process.env.BASE_URL}uploads/products/${image}`
+    )
+  if (doc.coverImage)
+    doc.coverImage = `${process.env.BASE_URL}uploads/products/${doc.coverImage}`
+})
+productsSchema.post('save', function (doc) {
+  if (doc.images)
+    doc.images = doc.images.map(
+      image => `${process.env.BASE_URL}uploads/products/${image}`
+    )
+  if (doc.coverImage)
+    doc.coverImage = `${process.env.BASE_URL}uploads/products/${doc.coverImage}`
 })
 
 export const ProductsModel = model<IProduct>('Product', productsSchema)

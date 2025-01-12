@@ -1,5 +1,6 @@
 import { Schema, model, Types, Query } from 'mongoose'
 import { ICategory } from '@types'
+import { setImageUrl } from '@utils'
 import slugify from 'slugify'
 
 const categoriesSchema = new Schema<ICategory>(
@@ -47,5 +48,12 @@ categoriesSchema.pre<Query<ICategory, ICategory>>(
     next()
   }
 )
+
+categoriesSchema.post('init', function (doc) {
+  setImageUrl<ICategory>(doc, 'categories')
+})
+categoriesSchema.post('save', function (doc) {
+  setImageUrl<ICategory>(doc, 'categories')
+})
 
 export const CategoriesModel = model<ICategory>('Category', categoriesSchema)

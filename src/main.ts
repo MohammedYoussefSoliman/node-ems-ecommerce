@@ -32,7 +32,7 @@ app.use(
 // http logger middleware
 app.use(morgan('common'))
 
-app.use(express.static(path.join(__dirname, '../uploads')))
+app.use(express.static(path.join(__dirname, 'uploads')))
 
 app.use('/api/v1/categories', categoryRouter)
 app.use('/api/v1/brands', brandsRouter)

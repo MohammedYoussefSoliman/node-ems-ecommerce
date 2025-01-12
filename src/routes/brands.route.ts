@@ -8,7 +8,7 @@ import {
   updateBrand,
 } from '@controllers'
 import { IGeneral } from 'types'
-import { queryHandler } from '@middleware'
+import { queryHandler, uploadImage, processSingleImage } from '@middleware'
 import { BrandsModel } from '@models'
 import {
   getCategoryValidators,
@@ -22,6 +22,18 @@ export const brandsRouter = Router()
 brandsRouter
   .get('/', queryHandler<IGeneral>(BrandsModel), getBrands)
   .get('/:id', ...getCategoryValidators, getBrand)
-  .post('/', ...createCategoryValidators, addBrand)
-  .put('/:id', ...updateCategoryValidator, updateBrand)
+  .post(
+    '/',
+    ...createCategoryValidators,
+    uploadImage,
+    processSingleImage('brands'),
+    addBrand
+  )
+  .put(
+    '/:id',
+    ...updateCategoryValidator,
+    uploadImage,
+    processSingleImage('brands'),
+    updateBrand
+  )
   .delete('/:id', ...deleteCategoryValidators, deleteBrand)

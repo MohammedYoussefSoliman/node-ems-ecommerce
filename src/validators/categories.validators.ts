@@ -14,6 +14,6 @@ export const deleteCategoryValidators = [generalValidator(), validator]
 export const updateCategoryValidator = [
   generalValidator(),
   validator,
-  slugHandler('name'),
+  slugHandler('name').optional(),
 ]
 export const createCategoryValidators = [createCategoryValidator, validator]

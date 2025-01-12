@@ -109,11 +109,7 @@ const createProductValidator = [
     .withMessage('Product quantity is required')
     .isInt({ min: 1 })
     .withMessage('Product quantity can not be negative'),
-  check('coverImage')
-    .notEmpty()
-    .withMessage('Product cover image is required')
-    .isURL()
-    .withMessage('Product cover image must be a url'),
+  check('coverImage').notEmpty().withMessage('Product cover image is required'),
   check('images')
     .optional()
     .isArray()

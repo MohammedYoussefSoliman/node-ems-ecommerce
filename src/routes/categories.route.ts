@@ -1,15 +1,13 @@
 import { Router } from 'express'
-
+import { uploadImage, processSingleImage } from '@middleware'
 import {
   addCategory,
   addSubCategory,
   getCategories,
   getCategory,
   getSubCategories,
-  resizeImage,
   updateCategory,
   deleteCategory,
-  uploadCategoryImage,
 } from '@controllers'
 import { ICategory } from 'types'
 import { queryHandler, adjustAddSubCategoryMiddleware } from '@middleware'
@@ -48,16 +46,16 @@ categoryRouter
   )
   .post(
     '/',
-    uploadCategoryImage,
-    resizeImage,
+    uploadImage,
+    processSingleImage('categories'),
     ...createCategoryValidators,
     addCategory
   )
   .put(
     '/:id',
+    uploadImage,
+    processSingleImage('categories'),
     ...updateCategoryValidator,
-    uploadCategoryImage,
-    resizeImage,
     updateCategory
   )
   .delete('/:id', ...deleteCategoryValidators, deleteCategory)
