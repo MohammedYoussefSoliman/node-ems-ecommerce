@@ -10,6 +10,7 @@ import {
   subCategoryRouter,
   brandsRouter,
   productsRouter,
+  usersRouter,
 } from '@routes'
 import { connectDB } from '@configs'
 import { ApiError } from '@types'
@@ -38,6 +39,7 @@ app.use('/api/v1/categories', categoryRouter)
 app.use('/api/v1/brands', brandsRouter)
 app.use('/api/v1/products', productsRouter)
 app.use('/api/v1/sub-categories', subCategoryRouter)
+app.use('/api/v1/users', usersRouter)
 
 app.all('*', (req, _res, next) => {
   const error = new ApiError(

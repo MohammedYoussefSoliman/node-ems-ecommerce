@@ -29,3 +29,12 @@ export interface IProduct extends Document {
   subCategories?: ObjectId[]
   category: ObjectId
 }
+
+export interface IUser extends Document {
+  name: string
+  email: string
+  password: string
+  role: 'user' | 'admin'
+  avatar: string
+  active: boolean
+}
